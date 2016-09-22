@@ -29,11 +29,15 @@
             <h3>Login</h3>
             <form method="POST"  action="Login">
                 <ul>
+                    ${LoginFailed} <br>
                     <li>User Name <input type="text" name="username"></li>
                     <li>Password <input type="password" name="password"></li>
+                    <% 
+                        session.setAttribute("LoginFailed", "");
+                    %>
                 </ul>
                 <br/>
-                <input type="submit" value="Login"> 
+                <input type="submit" value="Login">
             </form>
 
         </article>
