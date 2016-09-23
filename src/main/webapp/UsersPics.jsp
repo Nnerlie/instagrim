@@ -22,10 +22,9 @@
         </header>
         
         <nav>
-            <ul>
-                <li class="nav"><a href="/Instagrim/upload.jsp">Upload</a></li>
-                <li class="nav"><a href="/Instagrim/Images/majed">Sample Images</a></li>
-            </ul>
+            <a href="/Instagrim">Home</a> 
+            <a href="/Instagrim/upload.jsp">Upload</a> 
+            <a href="/Instagrim/Images/majed">Sample Images</a>
         </nav>
  
         <article>
@@ -50,9 +49,7 @@
         %>
         </article>
         <footer>
-            <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-            </ul>
+            
         </footer>
     </body>
 </html>

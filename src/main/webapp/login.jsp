@@ -19,32 +19,33 @@
         <h2>Your world in Black and White</h2>
         </header>
         <nav>
-            <ul>
-                
-                <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
-            </ul>
+            <a href="/Instagrim">Home</a> 
+            <a href="/Instagrim/Images/majed">Sample Images</a>
         </nav>
        
         <article>
             <h3>Login</h3>
             <form method="POST"  action="Login">
-                <ul>
-                    ${LoginFailed} <br>
-                    <li>User Name <input type="text" name="username"></li>
-                    <li>Password <input type="password" name="password"></li>
+                
+                    <font color=" #e11111 ">${LoginFailed}</font> <br>
+                    <table><tr><td>
+                                Username </td><td> <input type="text" name="username">
+                            </td></tr>
+                            <tr><td>
+                                Password </td><td> <input type="password" name="password">
+                    </td></tr></table>
+                    
                     <% 
-                        session.setAttribute("LoginFailed", "");
+                        session.setAttribute("LoginFailed", null);
                     %>
-                </ul>
+                    
                 <br/>
                 <input type="submit" value="Login">
             </form>
 
         </article>
         <footer>
-            <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-            </ul>
+            
         </footer>
     </body>
 </html>

@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
 import uk.ac.dundee.computing.aec.instagrim.models.User;
 
@@ -30,9 +31,7 @@ public class Register extends HttpServlet {
         // TODO Auto-generated method stub
         cluster = CassandraHosts.getCluster();
     }
-
-
-
+    
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -46,14 +45,26 @@ public class Register extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String username=request.getParameter("username");
-        String password=request.getParameter("password");
+        String password1=request.getParameter("password1");
+        String password2=request.getParameter("password2");
+        
+        HttpSession session = request.getSession();
         
         User us=new User();
         us.setCluster(cluster);
-        us.RegisterUser(username, password);
         
-	response.sendRedirect("/Instagrim");
-        
+        if (us.UserExists(username)) {
+            session.setAttribute("ErrorMsg", "The username already exists");
+            response.sendRedirect("/Instagrim/register.jsp");
+        }
+        else if (!password1.equals(password2)) {
+            session.setAttribute("ErrorMsg", "The passwords did not match");
+            response.sendRedirect("/Instagrim/register.jsp");
+        }
+        else {
+            us.RegisterUser(username, password1);
+            response.sendRedirect("/Instagrim");
+        }
     }
 
     /**

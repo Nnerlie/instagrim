@@ -9,8 +9,29 @@ and open the template in the editor.
 */
 
 
-nav {
-    text-align: left;
+/*nav {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    text-align: center;
     border: 2px;
-    float: right;
+}*/
+nav {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    margin: 0px 0px 0px 0px;
+    padding: 10px;
+    background-color: #DEDEDE;
+    width: 100%;
+    z-index: 100;
+    text-align: center;
+    border-bottom: 2px solid #C0C0C0;
+}
+body {
+    margin-top: 50px;
+}
+td {
+    padding: 5px;
 }

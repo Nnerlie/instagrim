@@ -18,28 +18,33 @@
         <h2>Your world in Black and White</h2>
         </header>
         <nav>
-            <ul>
-                
-                <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
-            </ul>
+            <a href="/Instagrim">Home</a> 
+            <a href="/Instagrim/Images/majed">Sample Images</a>
         </nav>
        
         <article>
             <h3>Register as user</h3>
             <form method="POST"  action="Register">
-                <ul>
-                    <li>User Name <input type="text" name="username"></li>
-                    <li>Password <input type="password" name="password"></li>
-                </ul>
-                <br/>
-                <input type="submit" value="Regidter"> 
+                <font color=" #e11111 ">${ErrorMsg}</font> <br>
+                    
+                <table><tr><td>
+                    User Name </td><td> <input type="text" name="username">
+                </td></tr><tr><td>
+                    Enter password </td><td>   <input type="password" name="password1">
+                </td></tr><tr><td>
+                    Re-enter password </td><td> <input type="password" name="password2">
+                </td></tr>
+                    
+                <% session.setAttribute("ErrorMsg", null); %>
+                    
+                <tr><td></td><td>
+                    <input type="submit" value="Register"> 
+                </td></tr></table>
             </form>
 
         </article>
         <footer>
-            <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-            </ul>
+            
         </footer>
     </body>
 </html>

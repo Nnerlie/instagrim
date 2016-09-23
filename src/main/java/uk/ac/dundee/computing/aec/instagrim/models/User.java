@@ -75,9 +75,23 @@ public class User {
                     return true;
             }
         }
-   
     
     return false;  
+    }
+    
+    public boolean UserExists(String username) {
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select password from userprofiles where login =?");
+        
+        ResultSet rs;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute(boundStatement.bind(username));
+        
+        if (rs.isExhausted()) {
+            return false;
+        } else {
+            return true;
+        }
     }
        public void setCluster(Cluster cluster) {
         this.cluster = cluster;

@@ -20,33 +20,31 @@
             <h2>Your world in Black and White</h2>
         </header>
         <nav>
-            <ul>
-
-               
-                <li><a href="upload.jsp">Upload</a></li>
-                    <%
-                        
-                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-                        if (lg != null) {
-                            String UserName = lg.getUsername();
-                            if (lg.getlogedin()) {
-                    %>
-
-                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
-                    <%}
-                            }else{
-                                %>
-                 <li><a href="register.jsp">Register</a></li>
-                <li><a href="login.jsp">Login</a></li>
+            <a href="/Instagrim">Home</a> 
+            <a href="upload.jsp">Upload</a>
                 <%
-                                        
-                            
-                    }%>
-            </ul>
+                    LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                    if (lg != null) {
+                        String UserName = lg.getUsername();
+                        if (lg.getlogedin()) {
+                %>
+
+                <a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a> 
+                <form method="POST" action="Logout">
+                    <input type="submit" value="Logout">
+                </form>
+                
+                <%}
+                        } else {
+                %>
+                
+                <a href="register.jsp">Register</a>
+                <a href="login.jsp">Login</a>
+                
+                <% } %>
         </nav>
         <footer>
             <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
                 <li>&COPY; Andy C</li>
             </ul>
         </footer>
