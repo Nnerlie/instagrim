@@ -8,15 +8,6 @@ and open the template in the editor.
     Author     : Administrator
 */
 
-
-/*nav {
-    position: fixed;
-    top: 0px;
-    right: 0px;
-    width: 100%;
-    text-align: center;
-    border: 2px;
-}*/
 nav {
     position: fixed;
     left: 0px;
@@ -29,8 +20,27 @@ nav {
     text-align: center;
     border-bottom: 2px solid #C0C0C0;
 }
+h1 {
+    
+}
+h2 {
+    
+}
+header {
+    width: 50%;
+    margin: 0 auto;
+    background-color: #ffffff;
+}
+article {
+    width: 40%;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border: 0px;
+}
 body {
     margin-top: 50px;
+    font-family: sans-serif;
+    font-size: 14px;
 }
 td {
     padding: 5px;

@@ -70,6 +70,7 @@ public final class CassandraHosts {
         if (getHosts(cluster)==null){
             return null;
         }
+        
         Keyspaces.SetUpKeySpaces(cluster);
 
         return cluster;
