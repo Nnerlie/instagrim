@@ -16,6 +16,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import uk.ac.dundee.computing.aec.instagrim.lib.AeSimpleSHA1;
 import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
+import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 
 /**
  *
@@ -85,6 +86,29 @@ public class User {
         }
     
     return false;  
+    }
+    
+    public LoggedIn setUserLogin(String username, LoggedIn lg) {
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select email, first_name, last_name, bio from userprofiles where login =?");
+        
+        ResultSet rs;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute(boundStatement.bind(username));
+        if (rs.isExhausted()) {
+            System.out.println("No Images returned");
+            lg = null;
+        }
+        else {
+            for (Row row : rs) {
+                lg.setEmail(row.getString("email"));
+                lg.setFName(row.getString("first_name"));
+                lg.setLName(row.getString("last_name"));
+                lg.setBio(row.getString("bio"));
+                return lg;
+            }
+        }
+        return lg;
     }
     
     public boolean UserExists(String username) {

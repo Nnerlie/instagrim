@@ -147,7 +147,8 @@ public class Image extends HttpServlet {
                 System.out.println("Length : " + b.length);
                 PicModel tm = new PicModel();
                 tm.setCluster(cluster);
-                tm.insertPic(b, type, filename, username);
+                boolean isProfile = false;
+                tm.insertPic(b, type, filename, username, isProfile);
 
                 is.close();
             }

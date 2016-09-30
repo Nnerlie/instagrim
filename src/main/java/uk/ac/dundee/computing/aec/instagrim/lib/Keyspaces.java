@@ -23,9 +23,11 @@ public final class Keyspaces {
                     + " image blob,"
                     + " thumb blob,"
                     + " processed blob,"
+                    + " profile blob,"
                     + " imagelength int,"
                     + " thumblength int,"
                     + "  processedlength int,"
+                    + " proilelength int,"
                     + " type  varchar,"
                     + " name  varchar,"
                     + " PRIMARY KEY (picid)"
@@ -48,6 +50,7 @@ public final class Keyspaces {
                     + "      last_name text,\n"
                     + "      email text,\n"
                     + "      bio text,\n"
+                    + "      ppicid uuid,\n"
                     + "      addresses  map<text, frozen <address>>\n"
                     + "  );";
             Session session = c.connect();

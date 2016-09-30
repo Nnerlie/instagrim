@@ -28,6 +28,10 @@
                         String UserName = lg.getUsername();
                         if (lg.getlogedin()) {
         %>
+        <form method="POST" enctype="multipart/form-data" action="ProfilePic">
+            Choose file: <input type="file" name="upfile"> <br/>
+            <input type="submit" value="Update Profile Picture">
+        </form>
         <form method="POST" action="Profile">
             <table><tr><td>
                         <%=UserName%>

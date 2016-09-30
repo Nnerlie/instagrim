@@ -60,9 +60,12 @@ public class Login extends HttpServlet {
             LoggedIn lg= new LoggedIn();
             lg.setLogedin();
             lg.setUsername(username);
-            //request.setAttribute("LoggedIn", lg);
             
-            // SET OTHER DETAILS HERE AS WELL
+            lg = us.setUserLogin(username, lg);
+            if (lg == null) {
+                session.setAttribute("LoginFailed", "Something went wrong when accessing database, please try again");
+                response.sendRedirect("/Instagrim/login.jsp");
+            }
             
             session.setAttribute("LoggedIn", lg);
             System.out.println("Session in servlet "+session);
