@@ -17,6 +17,7 @@ public class LoggedIn {
     private String fname=null;
     private String lname=null;
     private String bio=null;
+    private java.util.UUID ppicid = null;
     
     public void LogedIn(){
         
@@ -58,6 +59,12 @@ public class LoggedIn {
     }
     public String getBio() {
         return bio;
+    }
+    public void setPPicID(java.util.UUID ppicid) {
+        this.ppicid = ppicid;
+    }
+    public java.util.UUID getPPicID() {
+        return ppicid;
     }
     
     public void setLoginState(boolean logedin){

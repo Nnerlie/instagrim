@@ -56,6 +56,23 @@ public class User {
         BoundStatement boundStatement = new BoundStatement(ps);
         session.execute(boundStatement.bind(email, firstname, lastname, bio, username));
     }
+    public java.util.UUID getUserPPicID(String username ) {
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select ppicid from userprofiles where login =?");
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute(boundStatement.bind(username));
+        if (rs.isExhausted()) {
+            System.out.println("No Images returned");
+            return null;
+        } else {
+            for (Row row : rs) {
+               java.util.UUID ppicid = row.getUUID("ppicid");
+               return ppicid;
+            }
+        }
+        return null;
+    }
     
     public boolean IsValidUser(String username, String Password){
         AeSimpleSHA1 sha1handler=  new AeSimpleSHA1();
@@ -90,7 +107,7 @@ public class User {
     
     public LoggedIn setUserLogin(String username, LoggedIn lg) {
         Session session = cluster.connect("instagrim");
-        PreparedStatement ps = session.prepare("select email, first_name, last_name, bio from userprofiles where login =?");
+        PreparedStatement ps = session.prepare("select email, first_name, last_name, bio, ppicid from userprofiles where login =?");
         
         ResultSet rs;
         BoundStatement boundStatement = new BoundStatement(ps);
@@ -105,6 +122,7 @@ public class User {
                 lg.setFName(row.getString("first_name"));
                 lg.setLName(row.getString("last_name"));
                 lg.setBio(row.getString("bio"));
+                lg.setPPicID(row.getUUID("ppicid"));
                 return lg;
             }
         }

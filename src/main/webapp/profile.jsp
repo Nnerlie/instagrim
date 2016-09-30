@@ -28,6 +28,13 @@
                         String UserName = lg.getUsername();
                         if (lg.getlogedin()) {
         %>
+        
+        <% if (lg.getPPicID() == null) {
+            %> No profile picture <br />
+        <% } else { %>
+        <img src="/Instagrim/Image/<%=lg.getPPicID()%>"> <br/>
+        <% }%>
+        
         <form method="POST" enctype="multipart/form-data" action="ProfilePic">
             Choose file: <input type="file" name="upfile"> <br/>
             <input type="submit" value="Update Profile Picture">
