@@ -12,11 +12,12 @@
     <head>
         <title>Instagrim</title>
         <link rel="stylesheet" type="text/css" href="Styles.css" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
         <header>
-            <h1>InstaGrim ! </h1>
+            <h1>InstaGrim</h1>
             <h2>Your world in Black and White</h2>
         </header>
         <nav>
@@ -44,9 +45,7 @@
                 <% } %>
         </nav>
         <footer>
-            <ul>
-                <li>&COPY; Andy C</li>
-            </ul>
+            &COPY; Andy C
         </footer>
     </body>
 </html>

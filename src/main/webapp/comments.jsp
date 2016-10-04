@@ -17,23 +17,23 @@
     <body>
         <header>
         
-        <h1>InstaGrim ! </h1>
+        <h1>InstaGrim</h1>
         <h2>Your world in Black and White</h2>
         </header>
         
         <nav>
             <a href="/Instagrim">Home</a> 
+            <a href="/Instagrim/UserPics.jsp">Profile</a> 
             <a href="/Instagrim/upload.jsp">Upload</a> 
-            <a href="/Instagrim/Images/majed">Sample Images</a>
         </nav>
  
         <article>
-            <h1>Your Pics</h1>
+            <img src="/Instagrim/Image/<%=request.getAttribute("PictureID")%>">
         <%
-            java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
-            if (lsPics == null) {
+            java.util.LinkedList<Comment> lsComments = (java.util.LinkedList<Comment>) request.getAttribute("Comments");
+            if (lsComments == null) {
         %>
-        <p>No Pictures found</p>
+        <p>No Comments</p>
         <%
         } else {
             LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
@@ -41,14 +41,14 @@
                 String username = lg.getUsername();
             }
 
-            Iterator<Pic> iterator;
-            iterator = lsPics.iterator();
+            Iterator<Comment> iterator;
+            iterator = lsComments.iterator();
             while (iterator.hasNext()) {
-                Pic p = (Pic) iterator.next();
+                Comment c = (Comment) iterator.next();
 
         %>
-        <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a> <br />
-        <a href="/Instagrim/Comments/<%=p.getSUUID()%>" >Comments</a> <br /><%
+        
+        <%
             } }
         %>
         </article>

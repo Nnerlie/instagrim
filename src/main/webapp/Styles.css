@@ -9,22 +9,68 @@ and open the template in the editor.
 */
 
 nav {
+    background-color: #ffffff;
     position: fixed;
-    left: 0px;
     top: 0px;
+    left: 25%;
     margin: 0px 0px 0px 0px;
-    padding: 10px;
-    background-color: #DEDEDE;
-    width: 100%;
+    padding: 8px;
+    width: 50%;
     z-index: 100;
     text-align: center;
     border-bottom: 2px solid #C0C0C0;
+    text-transform: uppercase;
+}
+nav a:link, nav a:active, nav a:visited {
+    text-decoration: none;
+    color: #000000
+}
+nav a:hover {
+    color: #ffffff;
+    cursor: default;
+}
+nav button {
+    
+}
+footer {
+    background-color: #ffffff;
+    position: fixed;
+    bottom: 0px;
+    left: 25%;
+    margin: 0px 0px 0px 0px;
+    padding: 8px;
+    width: 50%;
+    z-index: 100;
+    text-align: center;
+    border-top: 2px solid #C0C0C0;
+    text-transform: uppercase;
+}
+a:link, a:active, a:visited {
+    color: #000000;
+    text-decoration: none;
+}
+a:hover {
+    color: #C0C0C0;
+    cursor: default;
+    text-decoration: none;
 }
 h1 {
-    
+    font-size: 30px;
+    line-height: 25px;
+    color: #000000;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    letter-spacing: 14px;
+    text-transform: uppercase;
 }
 h2 {
-    
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+    color: #C0C0C0;
+    text-align: center;
+    text-transform: uppercase;
 }
 header {
     width: 50%;
@@ -39,7 +85,8 @@ article {
 }
 body {
     margin-top: 50px;
-    font-family: sans-serif;
+    margin-bottom: 50px;
+    font-family: trebuchet ms, sans-serif;
     font-size: 14px;
 }
 td {

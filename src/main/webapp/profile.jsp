@@ -29,8 +29,8 @@
                         if (lg.getlogedin()) {
         %>
         
-        <% if (lg.getPPicID() == null) {
-            %> No profile picture <br />
+        <% if (lg.getPPicID() == null) { %> 
+        <img src="defaultprof.png"> <br />
         <% } else { %>
         <img src="/Instagrim/Image/<%=lg.getPPicID()%>"> <br/>
         <% }%>
