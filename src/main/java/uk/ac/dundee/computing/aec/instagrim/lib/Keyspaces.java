@@ -52,9 +52,11 @@ public final class Keyspaces {
                     + "      addresses  map<text, frozen <address>>\n"
                     + "  );";
             String CreateCommentsTable = "CREATE TABLE if not exists instagrim.comments (\n"
-                    + "     picid uuid PRIMARY KEY,\n"
+                    + "     picid uuid,\n"
                     + "     username text,\n"
                     + "     comment text,\n"
+                    + "     date text,\n"
+                    + "     PRIMARY KEY (picid,date)\n"
                     + "     );";
             Session session = c.connect();
             try {

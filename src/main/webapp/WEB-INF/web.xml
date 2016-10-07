@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE web-app>
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
+<error-page>
+    <error-code>404</error-code>
+    <location>/error-404.jsp</location>
+</error-page>
+<!--
+<error-page>
+    <location>/error-default.jsp</location>
+</error-page>
+-->
+</web-app>
+

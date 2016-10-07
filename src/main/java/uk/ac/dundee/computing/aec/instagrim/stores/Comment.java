@@ -5,7 +5,6 @@
  */
 package uk.ac.dundee.computing.aec.instagrim.stores;
 
-import java.util.Date;
 
 /**
  *
@@ -14,10 +13,10 @@ import java.util.Date;
 public class Comment {
     private String comment = null;
     private String username = null;
-    private Date timeAndDate;
+    private String date = null;
     
     public void Comment() {
-        timeAndDate = new Date();
+        
     }
     
     public void setUsername(String username) {
@@ -33,4 +32,11 @@ public class Comment {
     public String getComment() {
         return comment;
     }
+    
+    public void setDate(String date) {
+        this.date = date;
+    }
+    public String getDate() {
+        return date;
+    } 
 }

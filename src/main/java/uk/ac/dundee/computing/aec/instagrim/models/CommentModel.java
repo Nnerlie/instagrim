@@ -28,6 +28,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import javax.imageio.ImageIO;
@@ -53,18 +55,26 @@ public class CommentModel {
     }
     
     public void addComment(java.util.UUID picid, String comment, String username) {
+        Date theDate = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String date = dateFormat.format(theDate);
         
+        System.out.println("Picid: " + picid + ", Comment: " + comment + ", Username: " + username);
+        System.out.println("Date: " + date);
         Session session = cluster.connect("instagrim");
-        PreparedStatement ps = session.prepare("insert into comments (picid, comment, username) values (?,?,?)");
+        System.out.println("Preparing the statement");
+        PreparedStatement ps = session.prepare("insert into comments (picid, comment, username, date) values (?,?,?,?)");
         BoundStatement bs = new BoundStatement(ps);
-        session.execute(bs.bind(picid,comment,username));
+        System.out.println("Starting Session execution");
+        session.execute(bs.bind(picid,comment,username,date));
         session.close();
+        System.out.println("Session closed");
     }
     
     public java.util.LinkedList<Comment> getCommentsForPic(java.util.UUID picid) {
         java.util.LinkedList<Comment> Comments = new java.util.LinkedList<>();
         Session session = cluster.connect("instagrim");
-        PreparedStatement ps = session.prepare("select comment, username from comments where picid =?");
+        PreparedStatement ps = session.prepare("select comment, username, date from comments where picid =?");
         ResultSet rs = null;
         BoundStatement boundStatement = new BoundStatement(ps);
         rs = session.execute(boundStatement.bind(picid));
@@ -76,9 +86,11 @@ public class CommentModel {
                 Comment comment = new Comment();
                 String username = row.getString("username");
                 String com = row.getString("comment");
+                String date = row.getString("date");
                 
                 comment.setUsername(username);
                 comment.setComment(com);
+                comment.setDate(date);
                 
                 Comments.add(comment);
             }

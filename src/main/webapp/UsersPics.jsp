@@ -21,11 +21,7 @@
         <h2>Your world in Black and White</h2>
         </header>
         
-        <nav>
-            <a href="/Instagrim">Home</a> 
-            <a href="/Instagrim/upload.jsp">Upload</a> 
-            <a href="/Instagrim/Images/majed">Sample Images</a>
-        </nav>
+        <jsp:include page="nav.jsp" />
  
         <article>
             <h1>Your Pics</h1>
@@ -52,8 +48,7 @@
             } }
         %>
         </article>
-        <footer>
-            
-        </footer>
+        
+        <jsp:include page="footer.jsp" />
     </body>
 </html>

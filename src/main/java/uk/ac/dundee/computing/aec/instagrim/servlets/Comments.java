@@ -67,4 +67,32 @@ public class Comments extends HttpServlet {
 
     }
     
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session=request.getSession();
+        LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
+        
+        String username = null;
+        
+        if (lg.getlogedin()) {
+            username = lg.getUsername();
+        }
+        else {
+            username = request.getParameter("username");
+        }
+        String comment = request.getParameter("comment");
+        java.util.UUID picid = UUID.fromString(request.getParameter("picid"));
+        
+        CommentModel cm = new CommentModel();
+        cm.setCluster(cluster);
+        cm.addComment(picid, comment, username);
+        
+        System.out.println("Forwarding to userpics now");
+        
+        // How to redirect without entering a loop but ending up with the right picture
+        RequestDispatcher rd = request.getRequestDispatcher("/comments.jsp");
+        System.out.println("request: " + request + " , response: " + response);
+        rd.forward(request, response);
+    }
+    
 }

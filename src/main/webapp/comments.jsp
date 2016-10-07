@@ -21,14 +21,33 @@
         <h2>Your world in Black and White</h2>
         </header>
         
-        <nav>
-            <a href="/Instagrim">Home</a> 
-            <a href="/Instagrim/UserPics.jsp">Profile</a> 
-            <a href="/Instagrim/upload.jsp">Upload</a> 
-        </nav>
+        <jsp:include page="nav.jsp" />
  
         <article>
-            <img src="/Instagrim/Image/<%=request.getAttribute("PictureID")%>">
+            <img src="/Instagrim/Image/<%=request.getAttribute("PictureID")%>"> <br /><br />
+            
+        
+            
+            <textarea form="commentfrm" name="comment" rows="6" cols="100"></textarea>
+            <form method="POST" action="Comments" id="commentfrm">
+                <input type="hidden" name="picid" value="<%=request.getAttribute("PictureID")%>">
+                
+            <%
+                LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                if (lg != null) {
+                    String username = lg.getUsername();
+            %>
+            Comment as <%=username%>
+            <%
+                }
+                else {
+                
+            %>
+            Name: <input type="text" name="username"> <br />
+            <% } %>
+                <input type="submit" value="Post Comment">
+            </form>
+            
         <%
             java.util.LinkedList<Comment> lsComments = (java.util.LinkedList<Comment>) request.getAttribute("Comments");
             if (lsComments == null) {
@@ -36,10 +55,6 @@
         <p>No Comments</p>
         <%
         } else {
-            LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-            if (lg != null) {
-                String username = lg.getUsername();
-            }
 
             Iterator<Comment> iterator;
             iterator = lsComments.iterator();
@@ -47,13 +62,13 @@
                 Comment c = (Comment) iterator.next();
 
         %>
-        
+        <p><%=c.getUsername()%> at <%=c.getDate()%> <br />
+            <%=c.getComment()%></p>
         <%
             } }
         %>
         </article>
-        <footer>
-            
-        </footer>
+        
+        <jsp:include page="footer.jsp" />
     </body>
 </html>

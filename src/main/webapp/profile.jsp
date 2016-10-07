@@ -16,11 +16,8 @@
     <body>
         <h1>InstaGrim ! </h1>
         <h2>Your world in Black and White</h2>
-        <nav>
-            <a href="/Instagrim">Home</a> 
-            <a href="upload.jsp">Upload</a> 
-            <a href="/Instagrim/Images/majed">Sample Images</a>
-        </nav>
+        
+        <jsp:include page="nav.jsp" />
         
         <article>
         <% LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
@@ -85,5 +82,6 @@
                 You are not logged in
                 <% } %>
         </article>
+        <jsp:include page="footer.jsp" />
     </body>
 </html>
