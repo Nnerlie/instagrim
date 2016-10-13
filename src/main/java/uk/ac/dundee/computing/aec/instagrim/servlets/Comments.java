@@ -89,10 +89,7 @@ public class Comments extends HttpServlet {
         
         System.out.println("Forwarding to userpics now");
         
-        // How to redirect without entering a loop but ending up with the right picture
-        RequestDispatcher rd = request.getRequestDispatcher("/comments.jsp");
-        System.out.println("request: " + request + " , response: " + response);
-        rd.forward(request, response);
+        response.sendRedirect("/Instagrim/Comments/"+picid);
     }
     
 }

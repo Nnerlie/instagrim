@@ -16,8 +16,12 @@
     </head>
     <body>
         <nav>
+            <center><table><tr><td>
+                                    <h1>Instagrim</h1>
+                                    <h2>Your world in black and white</h2>
+                                </td><td>
             <a href="/Instagrim">Home</a> 
-            <a href="upload.jsp">Upload</a>
+            <a href="/Instagrim/upload.jsp">Upload</a>
                 <%
                     LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
                     if (lg != null) {
@@ -34,10 +38,11 @@
                         } else {
                 %>
                 
-                <a href="register.jsp">Register</a>
-                <a href="login.jsp">Login</a>
-                
+                <a href="/Instagrim/register.jsp">Register</a>
+                <a href="/Instagrim/login.jsp">Login</a>
+                                
                 <% } %>
+                </td></tr></table></center>
         </nav>
     </body>
 </html>

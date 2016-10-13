@@ -11,12 +11,23 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Instagrim</title>
+        <%
+            String[] bgarray = {"bgs/bg1.jpg", "bgs/bg2.jpg", "bgs/bg3.jpg", "bgs/bg4.jpg", "bgs/bg5.jpg", "bgs/bg6.jpg"};
+            java.util.Random rand = new java.util.Random();
+            int i = rand.nextInt(bgarray.length) + 1;
+            i = i - 1;
+            String bg = bgarray[i];
+        %>
+        <style>
+            body {
+                background-image: url("<%=bg%>");
+                background-size: cover;
+            }
+        </style>
+        <link rel="shortcut icon" href="/Instagrim/favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" type="text/css" href="Styles.css" />
     </head>
     <body>
-        <h1>InstaGrim ! </h1>
-        <h2>Your world in Black and White</h2>
-        
         <jsp:include page="nav.jsp" />
         
         <article>
@@ -26,18 +37,21 @@
                         if (lg.getlogedin()) {
         %>
         
+        <table><tr><td>
         <% if (lg.getPPicID() == null) { %> 
-        <img src="defaultprof.png"> <br />
+        <img src="defaultprof.png">
         <% } else { %>
-        <img src="/Instagrim/Image/<%=lg.getPPicID()%>"> <br/>
+        <img src="/Instagrim/Image/<%=lg.getPPicID()%>" width="100%">
         <% }%>
+                </td><td>
         
         <form method="POST" enctype="multipart/form-data" action="ProfilePic">
             Choose file: <input type="file" name="upfile"> <br/>
             <input type="submit" value="Update Profile Picture">
         </form>
         <form method="POST" action="Profile">
-            <table><tr><td>
+        </td></tr> <br />
+            <tr><td>
                         <%=UserName%>
                     </td><td>
                         Current Profile
@@ -76,11 +90,11 @@
                     </td></tr></table>
                 </form>
                 
-                <%}
-                        } else {
+                <%
+                        } } else {
                 %>
                 You are not logged in
-                <% } %>
+                <% }%>
         </article>
         <jsp:include page="footer.jsp" />
     </body>

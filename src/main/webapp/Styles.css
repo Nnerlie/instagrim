@@ -12,22 +12,27 @@ nav {
     background-color: #ffffff;
     position: fixed;
     top: 0px;
-    left: 25%;
+    left: 0px;
     margin: 0px 0px 0px 0px;
     padding: 8px;
-    width: 50%;
+    width: 100%;
     z-index: 100;
     text-align: center;
     border-bottom: 2px solid #C0C0C0;
     text-transform: uppercase;
+    opacity: 0.9;
 }
 nav a:link, nav a:active, nav a:visited {
-    text-decoration: none;
-    color: #000000
+    text-decoratin: none;
+    font-size: 18px;
+    margin: 5px;
+    color: #000000;
 }
 nav a:hover {
-    color: #ffffff;
+    color: #AAA7A7;
     cursor: default;
+    font-size: 18px;
+    margin: 5px;
 }
 nav button {
     
@@ -36,14 +41,15 @@ footer {
     background-color: #ffffff;
     position: fixed;
     bottom: 0px;
-    left: 25%;
+    left: 0px;
     margin: 0px 0px 0px 0px;
     padding: 8px;
-    width: 50%;
+    width: 100%;
     z-index: 100;
     text-align: center;
     border-top: 2px solid #C0C0C0;
     text-transform: uppercase;
+    opacity: 0.9;
 }
 a:link, a:active, a:visited {
     color: #000000;
@@ -68,27 +74,30 @@ h2 {
     font-size: 16px;
     padding: 0px;
     margin: 0px;
-    color: #C0C0C0;
+    color: #AAA7A7;
     text-align: center;
     text-transform: uppercase;
 }
 header {
-    width: 50%;
     margin: 0 auto;
     background-color: #ffffff;
 }
 article {
+    background-image: url("bgs/articlebg.png");
     width: 40%;
     margin: 0 auto;
-    background-color: #ffffff;
-    border: 0px;
+    padding: 10px;
+    border: 2px solid #C0C0C0;
 }
 body {
-    margin-top: 50px;
+    margin-top: 100px;
     margin-bottom: 50px;
     font-family: trebuchet ms, sans-serif;
     font-size: 14px;
 }
 td {
     padding: 5px;
+}
+img {
+    opacity: 1.0;
 }

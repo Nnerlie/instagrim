@@ -12,19 +12,28 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Instagrim</title>
+        <%
+            String[] bgarray = {"/Instagrim/bgs/bg1.jpg", "/Instagrim/bgs/bg2.jpg", "/Instagrim/bgs/bg3.jpg", "/Instagrim/bgs/bg4.jpg", "/Instagrim/bgs/bg5.jpg", "/Instagrim/bgs/bg6.jpg"};
+            java.util.Random rand = new java.util.Random();
+            int i = rand.nextInt(bgarray.length) + 1;
+            i = i - 1;
+            String bg = bgarray[i];
+        %>
+        <style>
+            body {
+                background-image: url("<%=bg%>");
+                background-size: cover;
+            }
+        </style>
+        <link rel="shortcut icon" href="/Instagrim/favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" type="text/css" href="/Instagrim/Styles.css" />
     </head>
     <body>
-        <header>
-        
-        <h1>InstaGrim</h1>
-        <h2>Your world in Black and White</h2>
-        </header>
         
         <jsp:include page="nav.jsp" />
  
         <article>
-            <img src="/Instagrim/Image/<%=request.getAttribute("PictureID")%>"> <br /><br />
+            <img src="/Instagrim/Image/<%=request.getAttribute("PictureID")%>" width="100%"> <br /><br />
             
         
             
