@@ -31,7 +31,7 @@
         <jsp:include page="nav.jsp" />
  
         <article>
-            <h3>File Upload</h3>
+            <h3>File Upload</h3> <br />
             <form method="POST" enctype="multipart/form-data" action="Image">
                 File to upload: <input type="file" name="upfile"><br/>
 

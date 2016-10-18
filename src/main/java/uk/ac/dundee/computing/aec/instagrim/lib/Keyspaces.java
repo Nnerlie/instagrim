@@ -34,13 +34,8 @@ public final class Keyspaces {
                     + "picid uuid,\n"
                     + "user varchar,\n"
                     + "pic_added timestamp,\n"
-                    + "PRIMARY KEY (user,pic_added)\n"
+                    + "PRIMARY KEY (user, pic_added)\n"
                     + ") WITH CLUSTERING ORDER BY (pic_added desc);";
-            String CreateAddressType = "CREATE TYPE if not exists instagrim.address (\n"
-                    + "      street text,\n"
-                    + "      city text,\n"
-                    + "      zip int\n"
-                    + "  );";
             String CreateUserProfile = "CREATE TABLE if not exists instagrim.userprofiles (\n"
                     + "      login text PRIMARY KEY,\n"
                      + "     password text,\n"
@@ -49,7 +44,6 @@ public final class Keyspaces {
                     + "      email text,\n"
                     + "      bio text,\n"
                     + "      ppicid uuid,\n"
-                    + "      addresses  map<text, frozen <address>>\n"
                     + "  );";
             String CreateCommentsTable = "CREATE TABLE if not exists instagrim.comments (\n"
                     + "     picid uuid,\n"
@@ -96,19 +90,12 @@ public final class Keyspaces {
             } catch (Exception et) {
                 System.out.println("Can't create comments table " + et);
             }
-            System.out.println("" + CreateAddressType);
-            try {
-                SimpleStatement cqlQuery = new SimpleStatement(CreateAddressType);
-                session.execute(cqlQuery);
-            } catch (Exception et) {
-                System.out.println("Can't create Address type " + et);
-            }
             System.out.println("" + CreateUserProfile);
             try {
                 SimpleStatement cqlQuery = new SimpleStatement(CreateUserProfile);
                 session.execute(cqlQuery);
             } catch (Exception et) {
-                System.out.println("Can't create Address Profile " + et);
+                System.out.println("Can't create User Profile " + et);
             }
             session.close();
 

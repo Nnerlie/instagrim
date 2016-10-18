@@ -7,7 +7,6 @@ package uk.ac.dundee.computing.aec.instagrim.servlets;
 
 import com.datastax.driver.core.Cluster;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -61,7 +60,7 @@ public class Profile extends HttpServlet {
             else { lg.setEmail(email); }
             if (firstname.equals("")) { firstname = lg.getFName(); }
             else { lg.setFName(firstname); }
-            if (lastname.equals("")) { lastname = lg.getFName(); }
+            if (lastname.equals("")) { lastname = lg.getLName(); }
             else { lg.setLName(lastname); }
             if (bio.equals("")) { bio = lg.getBio(); }
             else { lg.setBio(bio); }

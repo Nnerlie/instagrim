@@ -21,17 +21,17 @@
                                     <h2>Your world in black and white</h2>
                                 </td><td>
             <a href="/Instagrim">Home</a> 
-            <a href="/Instagrim/upload.jsp">Upload</a>
+            <a href="/Instagrim/upload.jsp">Upload</a> 
                 <%
                     LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
                     if (lg != null) {
                         String UserName = lg.getUsername();
                         if (lg.getlogedin()) {
                 %>
-
                 <a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a> 
-                <form method="POST" action="Logout">
-                    <input type="submit" value="Logout">
+                
+            <form method="POST" action="Logout">
+                    <input type="submit" value="Log out">
                 </form>
                 
                 <%}
@@ -39,7 +39,7 @@
                 %>
                 
                 <a href="/Instagrim/register.jsp">Register</a>
-                <a href="/Instagrim/login.jsp">Login</a>
+                <a href="/Instagrim/login.jsp">Log in</a>
                                 
                 <% } %>
                 </td></tr></table></center>

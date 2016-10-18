@@ -32,9 +32,11 @@
         <article>
             <h3>Register as user</h3>
             <form method="POST"  action="Register">
+                
+                <table align="center"><tr><td colspan="2">
                 <font color=" #e11111 ">${ErrorMsg}</font> <br>
                     
-                <table><tr><td>
+                </td></tr><tr><td>
                     User Name </td><td> <input type="text" name="username">
                 </td></tr><tr><td>
                     Enter password </td><td>   <input type="password" name="password1">

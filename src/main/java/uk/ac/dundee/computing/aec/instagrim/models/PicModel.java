@@ -18,25 +18,20 @@ import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
-import com.datastax.driver.core.utils.Bytes;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.Date;
-import java.util.LinkedList;
 import javax.imageio.ImageIO;
 import static org.imgscalr.Scalr.*;
 import org.imgscalr.Scalr.Method;
 
 import uk.ac.dundee.computing.aec.instagrim.lib.*;
 import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
-import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 //import uk.ac.dundee.computing.aec.stores.TweetStore;
 
 public class PicModel {
@@ -101,12 +96,31 @@ public class PicModel {
     
     public void deletePic(java.util.UUID picid, String user, boolean isProfile) {
         Session session = cluster.connect("instagrim");
-        PreparedStatement psDeletePic = session.prepare("delete from pics where picid =?");
+        PreparedStatement psDeletePic = session.prepare("delete from Pics where picid =?");
         
         if(!isProfile) {
-            PreparedStatement psDeletePicFromUser = session.prepare("delete from userpiclist where user =?");
-            BoundStatement bsDeletePicFromUser = new BoundStatement(psDeletePicFromUser);
-            session.execute(bsDeletePicFromUser.bind(user));
+            PreparedStatement psGetPicDate = session.prepare("select pic_added from userpiclist where picid =? allow filtering");
+            BoundStatement bsGetPicDate = new BoundStatement(psGetPicDate);
+            ResultSet rs = null;
+            rs = session.execute(bsGetPicDate.bind(picid));
+            
+            if (rs.isExhausted()) {
+                System.out.println("No Images returned");
+            }
+            else {
+                Date added = new Date();
+                for (Row row : rs) {
+                    added = row.getTimestamp("pic_added");
+                }
+                PreparedStatement psDeletePicFromUser = session.prepare("delete from userpiclist where user =? and pic_added =?");
+                BoundStatement bsDeletePicFromUser = new BoundStatement(psDeletePicFromUser);
+                session.execute(bsDeletePicFromUser.bind(user, added));
+                
+                PreparedStatement psDeleteComments = session.prepare("delete from comments where picid =?");
+                BoundStatement bsDeleteComments = new BoundStatement(psDeleteComments);
+                session.execute(bsDeleteComments.bind(picid));
+            }
+            
         }
         else {
             PreparedStatement psIDeleteProfPic = session.prepare("delete picid from userprofiles where login =?");

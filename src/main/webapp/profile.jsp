@@ -31,32 +31,34 @@
         <jsp:include page="nav.jsp" />
         
         <article>
+            <h3>Change profile picture</h3> <br />
         <% LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
                     if (lg != null) {
                         String UserName = lg.getUsername();
                         if (lg.getlogedin()) {
         %>
         
-        <table><tr><td>
+        <table align="center"><tr><td>
         <% if (lg.getPPicID() == null) { %> 
-        <img src="defaultprof.png">
+        <img src="/Instagrim/defaultprof.png">
         <% } else { %>
-        <img src="/Instagrim/Image/<%=lg.getPPicID()%>" width="100%">
+        <img src="/Instagrim/Image/<%=lg.getPPicID()%>" width="200">
         <% }%>
                 </td><td>
         
         <form method="POST" enctype="multipart/form-data" action="ProfilePic">
-            Choose file: <input type="file" name="upfile"> <br/>
+            Choose file: <input type="file" name="upfile"> <br /><br />
             <input type="submit" value="Update Profile Picture">
         </form>
         <form method="POST" action="Profile">
-        </td></tr> <br />
-            <tr><td>
-                        <%=UserName%>
+        </td></tr></table> <br />
+        <h3>Change profile details</h3> <br />
+        
+        <form method="POST" action="Profile">
+            <table align="center"><tr><td></td><td>
+                        <b>Current Profile</b>
                     </td><td>
-                        Current Profile
-                    </td><td>
-                        Edit Profile
+                        <b>Edit Profile</b>
                     </td></tr><tr><td>
                         Firstname
                     </td><td>

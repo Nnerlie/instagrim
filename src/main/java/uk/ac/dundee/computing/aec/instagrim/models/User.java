@@ -15,7 +15,6 @@ import com.datastax.driver.core.Session;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import uk.ac.dundee.computing.aec.instagrim.lib.AeSimpleSHA1;
-import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
 import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 
 /**
@@ -109,6 +108,8 @@ public class User {
         Session session = cluster.connect("instagrim");
         PreparedStatement ps = session.prepare("select email, first_name, last_name, bio, ppicid from userprofiles where login =?");
         
+        System.out.println("In setUserLogin() with parameter username " + username);
+        
         ResultSet rs;
         BoundStatement boundStatement = new BoundStatement(ps);
         rs = session.execute(boundStatement.bind(username));
@@ -118,10 +119,22 @@ public class User {
         }
         else {
             for (Row row : rs) {
-                lg.setEmail(row.getString("email"));
-                lg.setFName(row.getString("first_name"));
-                lg.setLName(row.getString("last_name"));
-                lg.setBio(row.getString("bio"));
+                String email = row.getString("email");
+                if (email == null) { lg.setEmail(""); }
+                else { lg.setEmail(email); }
+                
+                String fname = row.getString("first_name");
+                if (fname == null) { lg.setFName(""); }
+                else { lg.setFName(fname); }
+                
+                String lname = row.getString("last_name");
+                if (lname == null) { lg.setLName(""); }
+                else { lg.setLName(lname); }
+                
+                String bio = row.getString("bio");
+                if (bio == null) { lg.setBio(""); }
+                else { lg.setBio(bio); }
+                
                 lg.setPPicID(row.getUUID("ppicid"));
                 return lg;
             }

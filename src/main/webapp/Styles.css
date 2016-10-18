@@ -23,7 +23,7 @@ nav {
     opacity: 0.9;
 }
 nav a:link, nav a:active, nav a:visited {
-    text-decoratin: none;
+    text-decoration: none;
     font-size: 18px;
     margin: 5px;
     color: #000000;
@@ -33,9 +33,6 @@ nav a:hover {
     cursor: default;
     font-size: 18px;
     margin: 5px;
-}
-nav button {
-    
 }
 footer {
     background-color: #ffffff;
@@ -78,6 +75,16 @@ h2 {
     text-align: center;
     text-transform: uppercase;
 }
+h3 {
+    text-align: center;
+    text-transform: uppercase;
+    width: 80%;
+    font-size: 20px;
+    letter-spacing: 3px;
+    margin: 0 auto;
+    padding: 3px;
+    border-bottom: 2px solid #C0C0C0;
+}
 header {
     margin: 0 auto;
     background-color: #ffffff;
@@ -98,6 +105,24 @@ body {
 td {
     padding: 5px;
 }
-img {
-    opacity: 1.0;
+nav input[type=submit] {
+    display: inline;
+    border: 0px;
+    background-color: transparent;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #000000;
+    
+}
+nav input[type=submit]:hover {
+    display: inline;
+    border: 0px;
+    background-color: transparent;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #AAA7A7;
+    
+}
+nav form {
+    display: inline;
 }

@@ -30,24 +30,25 @@
         <jsp:include page="nav.jsp" />
        
         <article>
-            <h3>Login</h3>
+            <h3>Login</h3> <br />
             <form method="POST"  action="Login">
                 
+                    <table align="center"><tr><td colspan="2">
                     <font color=" #e11111 ">${LoginFailed}</font> <br>
-                    <table><tr><td>
+                            </td></tr><tr><td>
                                 Username </td><td> <input type="text" name="username">
                             </td></tr>
                             <tr><td>
                                 Password </td><td> <input type="password" name="password">
-                    </td></tr></table>
+                                </td></tr><tr><td></td><td>
                     
                     <% 
                         session.setAttribute("LoginFailed", null);
                     %>
                     
-                <br/>
-                <input type="submit" value="Login">
+                <input type="submit" value="Log In">
             </form>
+                    </td></tr></table>
 
         </article>
         <jsp:include page="footer.jsp" />
