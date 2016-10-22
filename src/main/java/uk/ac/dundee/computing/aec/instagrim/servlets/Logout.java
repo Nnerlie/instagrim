@@ -14,7 +14,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
  *
  * @author Administrator
  */
-@WebServlet(name = "Logout", urlPatterns = {"/Logout","/Logout/*","/Images/Logout"})
+@WebServlet(name = "logout", urlPatterns = {"/logout","/logout/*","/images/logout"})
 public class Logout extends HttpServlet {
 
 
@@ -41,10 +41,10 @@ public class Logout extends HttpServlet {
             
             session.setAttribute("LoggedIn", lg);
             System.out.println("Session in servlet "+session);
-            response.sendRedirect("/Instagrim/");
+            response.sendRedirect("/instagrim/");
             
         }else{
-            response.sendRedirect("/Instagrim/");
+            response.sendRedirect("/instagrim/");
         }
         
     }

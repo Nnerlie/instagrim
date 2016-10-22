@@ -19,7 +19,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
  *
  * @author Administrator
  */
-@WebServlet(name = "Delete", urlPatterns = {"/Images/Delete"})
+@WebServlet(name = "Delete", urlPatterns = {"/images/Delete"})
 public class Delete extends HttpServlet {
 
     Cluster cluster=null;
@@ -48,7 +48,7 @@ public class Delete extends HttpServlet {
         tm.setCluster(cluster);
         tm.deletePic(picid, lg.getUsername(), isProfile);
         
-        response.sendRedirect("/Instagrim/Images/" + lg.getUsername());
+        response.sendRedirect("/instagrim/images/" + lg.getUsername());
         
     }
 }

@@ -20,7 +20,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.Comment;
 /**
  * Servlet implementation class Image
  */
-@WebServlet(urlPatterns = {"/Comments", "/Comments/*"})
+@WebServlet(urlPatterns = {"/comments", "/comments/*"})
 
 public class Comments extends HttpServlet {
 
@@ -78,7 +78,7 @@ public class Comments extends HttpServlet {
         
         System.out.println("Forwarding to userpics now");
         
-        response.sendRedirect("/Instagrim/Comments/"+picid);
+        response.sendRedirect("/instagrim/comments/"+picid);
     }
     
 }

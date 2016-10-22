@@ -24,7 +24,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
  *
  * @author Administrator
  */
-@WebServlet(name = "Login", urlPatterns = {"/Login","/Login/*"})
+@WebServlet(name = "Login", urlPatterns = {"/login","/login/*"})
 public class Login extends HttpServlet {
 
     Cluster cluster=null;
@@ -38,7 +38,8 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        RequestDispatcher rs = request.getRequestDispatcher("/WEB-INF/login.jsp");
+        rs.forward(request, response);
     }
 
     /**
@@ -69,7 +70,7 @@ public class Login extends HttpServlet {
             lg = us.setUserLogin(username, lg);
             if (lg == null) {
                 session.setAttribute("LoginFailed", "Something went wrong when accessing database, please try again");
-                response.sendRedirect("/Instagrim/login.jsp");
+                response.sendRedirect("/instagrim/login");
             }
             
             session.setAttribute("LoggedIn", lg);
@@ -79,7 +80,7 @@ public class Login extends HttpServlet {
             
         }else{
             session.setAttribute("LoginFailed", "Invalid username and/or password");
-            response.sendRedirect("/Instagrim/login.jsp");
+            response.sendRedirect("/instagrim/login");
         }
         
     }

@@ -23,7 +23,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
  *
  * @author viivi
  */
-@WebServlet(name = "Profile", urlPatterns = {"/Profile","/Profile/*"})
+@WebServlet(name = "profile", urlPatterns = {"/profile","/profile/*"})
 public class Profile extends HttpServlet {
     
     Cluster cluster=null;
@@ -31,6 +31,13 @@ public class Profile extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         // TODO Auto-generated method stub
         cluster = CassandraHosts.getCluster();
+    }
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher rs = request.getRequestDispatcher("/WEB-INF/profile.jsp");
+        rs.forward(request, response);
     }
     
     @Override
@@ -53,7 +60,7 @@ public class Profile extends HttpServlet {
         boolean isValid=us.IsValidUser(username, password);
         
         if (!lg.getlogedin() || !isValid) {
-            response.sendRedirect("/Instagrim/profile.jsp");
+            response.sendRedirect("/instagrim/profile.jsp");
         }
         else {
             if (email.equals("")) { email = lg.getEmail(); }

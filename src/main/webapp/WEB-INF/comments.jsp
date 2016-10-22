@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Instagrim</title>
         <%
-            String[] bgarray = {"/Instagrim/bgs/bg1.jpg", "/Instagrim/bgs/bg2.jpg", "/Instagrim/bgs/bg3.jpg", "/Instagrim/bgs/bg4.jpg", "/Instagrim/bgs/bg5.jpg", "/Instagrim/bgs/bg6.jpg"};
+            String[] bgarray = {"/instagrim/bgs/bg1.jpg", "/instagrim/bgs/bg2.jpg", "/instagrim/bgs/bg3.jpg", "/instagrim/bgs/bg4.jpg", "/instagrim/bgs/bg5.jpg", "/instagrim/bgs/bg6.jpg"};
             java.util.Random rand = new java.util.Random();
             int i = rand.nextInt(bgarray.length) + 1;
             i = i - 1;
@@ -25,20 +25,20 @@
                 background-size: cover;
             }
         </style>
-        <link rel="shortcut icon" href="/Instagrim/favicon.ico" type="image/x-icon" />
-        <link rel="stylesheet" type="text/css" href="/Instagrim/Styles.css" />
+        <link rel="shortcut icon" href="/instagrim/favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" type="text/css" href="/instagrim/Styles.css" />
     </head>
     <body>
         
         <jsp:include page="nav.jsp" />
  
         <article>
-            <img src="/Instagrim/Image/<%=request.getAttribute("PictureID")%>" width="100%"> <br /><br />
+            <img src="/instagrim/image/<%=request.getAttribute("PictureID")%>" width="100%"> <br /><br />
             
         
             
             <textarea form="commentfrm" name="comment" rows="6" cols="100"></textarea>
-            <form method="POST" action="Comments" id="commentfrm">
+            <form method="POST" action="comments" id="commentfrm">
                 <input type="hidden" name="picid" value="<%=request.getAttribute("PictureID")%>">
                 
             <%

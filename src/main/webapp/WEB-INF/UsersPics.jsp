@@ -14,7 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Instagrim</title>
         <%
-            String[] bgarray = {"/Instagrim/bgs/bg1.jpg", "/Instagrim/bgs/bg2.jpg", "/Instagrim/bgs/bg3.jpg", "/Instagrim/bgs/bg4.jpg", "/Instagrim/bgs/bg5.jpg", "/Instagrim/bgs/bg6.jpg"};
+            String[] bgarray = {"/instagrim/bgs/bg1.jpg", "/instagrim/bgs/bg2.jpg", "/instagrim/bgs/bg3.jpg", "/instagrim/bgs/bg4.jpg", "/instagrim/bgs/bg5.jpg", "/instagrim/bgs/bg6.jpg"};
             java.util.Random rand = new java.util.Random();
             int i = rand.nextInt(bgarray.length) + 1;
             i = i - 1;
@@ -27,8 +27,8 @@
                 background-attachment: fixed;
             }
         </style>
-        <link rel="shortcut icon" href="/Instagrim/favicon.ico" type="image/x-icon" />
-        <link rel="stylesheet" type="text/css" href="/Instagrim/Styles.css" />
+        <link rel="shortcut icon" href="/instagrim/favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" type="text/css" href="/instagrim/Styles.css" />
     </head>
     <body>
         <jsp:include page="nav.jsp" />
@@ -47,10 +47,10 @@
             <h3><%=profileOfUser%></h3> <br />
             <table align="center"><tr><td>
                         <% if(profile.getPPicID() == null) { %>
-                            <img src="/Instagrim/defaultprof.png" />
+                            <img src="/instagrim/defaultprof.png" />
                             
                         <% } else { %>
-                        <img src="/Instagrim/Image/<%=profile.getPPicID()%>" width="200" />
+                        <img src="/instagrim/image/<%=profile.getPPicID()%>" width="200" />
                     <% } %></td><td>
                         <font size="4"><b><%=profile.getFName()%> <%=profile.getLName()%></b></font> <br />
         <%=profile.getEmail()%> <br /><br />
@@ -58,7 +58,7 @@
         <% if (rightUser) {
             %>
                     </td><td style="text-align:right; vertical-align:bottom;" valign="bottom" width="100">
-                        <a href="/Instagrim/profile.jsp">Edit Profile</a>
+                        <a href="/instagrim/profile">Edit Profile</a>
                         <% } %>
                     </td></tr></table>
                     <hr width="80%" color="#C0C0C0" align="center"/>
@@ -77,9 +77,9 @@
 
         %>
         <table><tr><td>
-            <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>" style="border:0px;"></a>
+            <a href="/instagrim/image/<%=p.getSUUID()%>" ><img src="/instagrim/thumb/<%=p.getSUUID()%>" style="border:0px;"></a>
         </td></tr><tr><td>
-            <a href="/Instagrim/Comments/<%=p.getSUUID()%>" >Comments</a>
+            <a href="/instagrim/comments/<%=p.getSUUID()%>" >Comments</a>
         </td><td style="text-align:right;">
         <%
             if (rightUser) {

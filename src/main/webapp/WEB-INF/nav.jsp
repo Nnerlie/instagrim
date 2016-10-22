@@ -16,21 +16,21 @@
     </head>
     <body>
         <nav>
-            <center><table><tr><td>
+            <table align="center" style="display:inline;"><tr><td>
                                     <h1>Instagrim</h1>
                                     <h2>Your world in black and white</h2>
                                 </td><td>
-            <a href="/Instagrim">Home</a> 
-            <a href="/Instagrim/upload.jsp">Upload</a> 
+            <a href="/instagrim">Home</a> 
+            <a href="/instagrim/upload">Upload</a> 
                 <%
                     LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
                     if (lg != null) {
                         String UserName = lg.getUsername();
                         if (lg.getlogedin()) {
                 %>
-                <a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a> 
+                <a href="/instagrim/images/<%=lg.getUsername()%>">Your Images</a> 
                 
-            <form method="POST" action="Logout">
+            <form method="POST" action="logout">
                     <input type="submit" value="Log out">
                 </form>
                 
@@ -38,11 +38,13 @@
                         } else {
                 %>
                 
-                <a href="/Instagrim/register.jsp">Register</a>
-                <a href="/Instagrim/login.jsp">Log in</a>
+                <a href="/instagrim/register">Register</a>
+                <a href="/instagrim/login">Log in</a>
                                 
                 <% } %>
-                </td></tr></table></center>
+                    
+                </td></tr>
+            </table>
         </nav>
     </body>
 </html>

@@ -90,7 +90,7 @@ public class ProfilePic extends HttpServlet {
             LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
             if (!lg.getlogedin()){
                 is.close();
-                response.sendRedirect("/Instagrim/index.jsp");
+                response.sendRedirect("/instagrim/index.jsp");
             }
             String username=lg.getUsername();
             if (i > 0) {

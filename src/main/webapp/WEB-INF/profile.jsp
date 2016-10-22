@@ -24,7 +24,7 @@
                 background-size: cover;
             }
         </style>
-        <link rel="shortcut icon" href="/Instagrim/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="/instagrim/favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" type="text/css" href="Styles.css" />
     </head>
     <body>
@@ -40,9 +40,9 @@
         
         <table align="center"><tr><td>
         <% if (lg.getPPicID() == null) { %> 
-        <img src="/Instagrim/defaultprof.png">
+        <img src="/instagrim/defaultprof.png">
         <% } else { %>
-        <img src="/Instagrim/Image/<%=lg.getPPicID()%>" width="200">
+        <img src="/instagrim/image/<%=lg.getPPicID()%>" width="200">
         <% }%>
                 </td><td>
         

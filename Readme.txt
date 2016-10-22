@@ -11,12 +11,12 @@ The code is used as an example for AC32007, School of Computing, Univeristy of D
 
 It implements the following URL patterns:
 
-/Image/*
-/Images
-/Thumb/*
- /Images/*
-/Login
-/Register
+/image/*
+/images
+/thumb/*
+ /images/*
+/login
+/register
 
 Not all work 100% correctly .  Some parts of the implementation are missing.
 
@@ -30,7 +30,7 @@ Some ideas for added functionality you might like to add (not all are simple, yo
 1: Extend the registration process and display a profile for users (add “\profile\*” for  instance)
 2: Upload a users picture to the users profile
 3: Add image filters.  So /alter/filername/* would create a new version of the picture with that filter  applied.  
-4: Allow users to comment on other users pictures. /Image/Comments/* would display the picture with the comments.
+4: Allow users to comment on other users pictures. /image/comments/* would display the picture with the comments.
 
 This is not a limit to what you could do, use your imagination !
 

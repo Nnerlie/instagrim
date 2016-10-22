@@ -23,15 +23,15 @@
                 background-size: cover;
             }
         </style>
-        <link rel="shortcut icon" href="/Instagrim/favicon.ico" type="image/x-icon" />
-        <link rel="stylesheet" type="text/css" href="Styles.css" />
+        <link rel="shortcut icon" href="/instagrim/favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" type="text/css" href="/instagrim/Styles.css" />
     </head>
     <body>
         <jsp:include page="nav.jsp" />
        
         <article>
             <h3>Login</h3> <br />
-            <form method="POST"  action="Login">
+            <form method="POST"  action="login">
                 
                     <table align="center"><tr><td colspan="2">
                     <font color=" #e11111 ">${LoginFailed}</font> <br>

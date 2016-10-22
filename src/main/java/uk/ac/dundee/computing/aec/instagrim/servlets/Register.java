@@ -23,12 +23,20 @@ import uk.ac.dundee.computing.aec.instagrim.models.User;
  *
  * @author Administrator
  */
-@WebServlet(name = "Register", urlPatterns = {"/Register"})
+@WebServlet(name = "Register", urlPatterns = {"/register"})
 public class Register extends HttpServlet {
     Cluster cluster=null;
     public void init(ServletConfig config) throws ServletException {
         // TODO Auto-generated method stub
         cluster = CassandraHosts.getCluster();
+    }
+    
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher rs = request.getRequestDispatcher("/WEB-INF/register.jsp");
+        rs.forward(request, response);
     }
     
 
@@ -54,15 +62,15 @@ public class Register extends HttpServlet {
         
         if (us.UserExists(username)) {
             session.setAttribute("ErrorMsg", "The username already exists");
-            response.sendRedirect("/Instagrim/register.jsp");
+            response.sendRedirect("/instagrim/register");
         }
         else if (!password1.equals(password2)) {
             session.setAttribute("ErrorMsg", "The passwords did not match");
-            response.sendRedirect("/Instagrim/register.jsp");
+            response.sendRedirect("/instagrim/register");
         }
         else {
             us.RegisterUser(username, password1);
-            response.sendRedirect("/Instagrim");
+            response.sendRedirect("/instagrim");
         }
     }
 

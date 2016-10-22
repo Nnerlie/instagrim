@@ -61,10 +61,10 @@ h1 {
     font-size: 30px;
     line-height: 25px;
     color: #000000;
-    text-align: center;
+    text-align: left;
     padding: 0px;
     margin: 0px;
-    letter-spacing: 14px;
+    letter-spacing: 15px;
     text-transform: uppercase;
 }
 h2 {
@@ -72,7 +72,7 @@ h2 {
     padding: 0px;
     margin: 0px;
     color: #AAA7A7;
-    text-align: center;
+    text-align: left;
     text-transform: uppercase;
 }
 h3 {
@@ -112,7 +112,6 @@ nav input[type=submit] {
     text-transform: uppercase;
     font-size: 18px;
     color: #000000;
-    
 }
 nav input[type=submit]:hover {
     display: inline;
@@ -120,9 +119,11 @@ nav input[type=submit]:hover {
     background-color: transparent;
     text-transform: uppercase;
     font-size: 18px;
-    color: #AAA7A7;
-    
+    color: #AAA7A7;    
 }
 nav form {
     display: inline;
+}
+nav img:hover {
+    opacity: 0.5;
 }

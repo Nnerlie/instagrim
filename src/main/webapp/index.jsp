@@ -26,13 +26,13 @@
             }
         </style>
         <link rel="stylesheet" type="text/css" href="Styles.css" />
-        <link rel="shortcut icon" href="/Instagrim/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="/instagrim/favicon.ico" type="image/x-icon" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
         
-        <jsp:include page="nav.jsp" />
+        <jsp:include page="/WEB-INF/nav.jsp" />
         
-        <jsp:include page="footer.jsp" />
+        <jsp:include page="/WEB-INF/footer.jsp" />
     </body>
 </html>

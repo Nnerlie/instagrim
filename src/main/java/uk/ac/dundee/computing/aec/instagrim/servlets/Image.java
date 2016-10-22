@@ -29,11 +29,11 @@ import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
  * Servlet implementation class Image
  */
 @WebServlet(urlPatterns = {
-    "/Image",
-    "/Image/*",
-    "/Thumb/*",
-    "/Images",
-    "/Images/*"
+    "/image",
+    "/image/*",
+    "/thumb/*",
+    "/images",
+    "/images/*"
 })
 @MultipartConfig
 
@@ -51,9 +51,9 @@ public class Image extends HttpServlet {
     public Image() {
         super();
         // TODO Auto-generated constructor stub
-        CommandsMap.put("Image", 1);
-        CommandsMap.put("Images", 2);
-        CommandsMap.put("Thumb", 3);
+        CommandsMap.put("image", 1);
+        CommandsMap.put("images", 2);
+        CommandsMap.put("thumb", 3);
 
     }
 
@@ -95,7 +95,7 @@ public class Image extends HttpServlet {
         PicModel tm = new PicModel();
         tm.setCluster(cluster);
         java.util.LinkedList<Pic> lsPics = tm.getPicsForUser(User);
-        RequestDispatcher rd = request.getRequestDispatcher("/UsersPics.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/UsersPics.jsp");
         request.setAttribute("Pics", lsPics);
         
         LoggedIn profile = new LoggedIn();
@@ -160,7 +160,7 @@ public class Image extends HttpServlet {
 
                 is.close();
             }
-            RequestDispatcher rd = request.getRequestDispatcher("/upload.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/upload");
             rd.forward(request, response);
         }
 
