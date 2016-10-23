@@ -96,4 +96,11 @@ public class CommentModel {
         return username;
     }
     
+    public void deleteComment(java.util.UUID picid, String date) {
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("delete from comments where picid =? and date =?");
+        BoundStatement bs = new BoundStatement(ps);
+        session.execute(bs.bind(picid,date));
+    }
+    
 }

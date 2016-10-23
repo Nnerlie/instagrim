@@ -3,7 +3,13 @@ package uk.ac.dundee.computing.aec.instagrim.servlets;
 
 import com.datastax.driver.core.Cluster;
 import java.util.UUID;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,11 +18,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
-import uk.ac.dundee.computing.aec.instagrim.models.PicModel;
+import uk.ac.dundee.computing.aec.instagrim.models.CommentModel;
 import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 
-@WebServlet(name = "Delete", urlPatterns = {"/comments/Delete"})
-public class Delete extends HttpServlet {
+@WebServlet(name = "deleteCom", urlPatterns = {"/comments/deleteCom"})
+public class DeleteCom extends HttpServlet {
 
     Cluster cluster=null;
 
@@ -29,19 +35,18 @@ public class Delete extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("picid");
-        
-        UUID picid = UUID.fromString(id);
+        String picture = request.getParameter("id");
+        String date = request.getParameter("dateAndTime");
+        UUID picid = UUID.fromString(picture);
         
         HttpSession session=request.getSession();
         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
         
-        boolean isProfile = false;
-        PicModel tm = new PicModel();
-        tm.setCluster(cluster);
-        tm.deletePic(picid, lg.getUsername(), isProfile);
+        CommentModel cm = new CommentModel();
+        cm.setCluster(cluster);
+        cm.deleteComment(picid, date);
         
-        response.sendRedirect("/instagrim/images/" + lg.getUsername());
+        response.sendRedirect("/instagrim/comments/" + picid);
         
     }
 }

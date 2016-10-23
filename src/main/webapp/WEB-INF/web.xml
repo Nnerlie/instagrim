@@ -7,9 +7,8 @@
     <location>/error-404.jsp</location>
 </error-page>
 
-<!--
 <error-page>
     <location>/error-default.jsp</location>
-</error-page> -->
+</error-page>
 </web-app>
 

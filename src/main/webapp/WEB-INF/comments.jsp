@@ -34,8 +34,8 @@
  
         <article class="comment">
             <% String picid = (String) request.getAttribute("PictureID"); %>
-            <table><tr><td width="50%" valign="top">
-            <a href="/instagrim/image/<%=picid%>"><img src="/instagrim/image/<%=request.getAttribute("PictureID")%>" width="100%"></a>
+            <table><tr><td width="50%" valign="top" align="center">
+            <a href="/instagrim/image/<%=picid%>"><img src="/instagrim/image/<%=picid%>" width="100%"></a> <br />
             <br />
             <%
                 // get the user of the image
@@ -52,7 +52,7 @@
                 %>
                 <form method="POST" action="Delete">
                     <input type="hidden" value="<%=picid%>" name="picid">
-                    <input type="submit" value="Delete">
+                    <input type="submit" value="Delete Image">
                     </form>
         <% } %>
                     </td><td valign="top">
@@ -60,7 +60,7 @@
             
             <textarea form="commentfrm" name="comment" rows="5" cols="50%"></textarea>
             <form method="POST" action="comments" id="commentfrm">
-                <input type="hidden" name="picid" value="<%=request.getAttribute("PictureID")%>"> <br />
+                <input type="hidden" name="picid" value="<%=picid%>"> <br />
                 
             <%
                 if (username != null) {
@@ -91,8 +91,20 @@
 
         %>
         <hr width="100%" color="#C0C0C0" align="center"/>
-        <p><b><%=c.getUsername()%> at <%=c.getDate()%></b> <br />
-            <%=c.getComment()%></p>
+        <table width="100%"><tr><td>
+        <b><%=c.getUsername()%> at <%=c.getDate()%></b> <br />
+            <%=c.getComment()%>
+        
+            <% if (username != null) {
+                if ( (username.equals(c.getUsername())) || (username.equals(rUser)) ) { %>
+        </td><td class="textButton" valign="top" align="right">
+            <form method="POST" action="deleteCom">
+                <input type="hidden" name="id" value="<%=picid%>">
+                <input type="hidden" name="dateAndTime" value="<%=c.getDate()%>">
+                <input type="submit" value="Delete">
+            </form>
+            <% } } %>
+        </td></tr></table>
         <%
             } }
         %>

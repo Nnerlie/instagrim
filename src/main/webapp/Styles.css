@@ -136,3 +136,14 @@ nav input[type=image]:hover {
     opacity: 0.5;
     cursor: default;
 }
+.textButton input[type=submit] {
+    display: inline;
+    border: 0px;
+    background-color: transparent;
+    font-size: 14px;
+    color: #444444;
+}
+.textButton input[type=submit]:hover {
+    color: #C0C0C0;
+    cursor: default;
+}
