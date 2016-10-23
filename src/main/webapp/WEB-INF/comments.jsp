@@ -32,19 +32,38 @@
         
         <jsp:include page="nav.jsp" />
  
-        <article>
-            <img src="/instagrim/image/<%=request.getAttribute("PictureID")%>" width="100%"> <br /><br />
-            
+        <article class="comment">
+            <% String picid = (String) request.getAttribute("PictureID"); %>
+            <table><tr><td width="50%" valign="top">
+            <a href="/instagrim/image/<%=picid%>"><img src="/instagrim/image/<%=request.getAttribute("PictureID")%>" width="100%"></a>
+            <br />
+            <%
+                // get the user of the image
+                String rUser = (String)request.getAttribute("TheUser");
+                LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                String username = null;
+                
+                if (lg != null) {
+                    username = lg.getUsername();
+                }
+                // check if the curren user is the same as the one that uploaded the image
+                if (rUser.equals(username)) {
+                    // if true, allow the user the option to delete the image
+                %>
+                <form method="POST" action="Delete">
+                    <input type="hidden" value="<%=picid%>" name="picid">
+                    <input type="submit" value="Delete">
+                    </form>
+        <% } %>
+                    </td><td valign="top">
         
             
-            <textarea form="commentfrm" name="comment" rows="6" cols="100"></textarea>
+            <textarea form="commentfrm" name="comment" rows="5" cols="50%"></textarea>
             <form method="POST" action="comments" id="commentfrm">
-                <input type="hidden" name="picid" value="<%=request.getAttribute("PictureID")%>">
+                <input type="hidden" name="picid" value="<%=request.getAttribute("PictureID")%>"> <br />
                 
             <%
-                LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-                if (lg != null) {
-                    String username = lg.getUsername();
+                if (username != null) {
             %>
             Comment as <%=username%>
             <%
@@ -52,9 +71,9 @@
                 else {
                 
             %>
-            Name: <input type="text" name="username"> <br />
+            Name: <input type="text" name="username"> 
             <% } %>
-                <input type="submit" value="Post Comment">
+                <input type="submit" value="Post Comment" style="display:inline;"> <br /><br />
             </form>
             
         <%
@@ -64,18 +83,20 @@
         <p>No Comments</p>
         <%
         } else {
-
+            // iterate through all the comments for current img
             Iterator<Comment> iterator;
             iterator = lsComments.iterator();
             while (iterator.hasNext()) {
                 Comment c = (Comment) iterator.next();
 
         %>
-        <p><%=c.getUsername()%> at <%=c.getDate()%> <br />
+        <hr width="100%" color="#C0C0C0" align="center"/>
+        <p><b><%=c.getUsername()%> at <%=c.getDate()%></b> <br />
             <%=c.getComment()%></p>
         <%
             } }
         %>
+            </td></tr></table>
         </article>
         
         <jsp:include page="footer.jsp" />

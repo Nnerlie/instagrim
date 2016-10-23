@@ -15,11 +15,7 @@ import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
 import uk.ac.dundee.computing.aec.instagrim.models.PicModel;
 import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 
-/**
- *
- * @author Administrator
- */
-@WebServlet(name = "Delete", urlPatterns = {"/images/Delete"})
+@WebServlet(name = "Delete", urlPatterns = {"/comments/Delete"})
 public class Delete extends HttpServlet {
 
     Cluster cluster=null;

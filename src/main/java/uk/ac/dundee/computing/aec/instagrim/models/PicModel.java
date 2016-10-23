@@ -1,17 +1,5 @@
 package uk.ac.dundee.computing.aec.instagrim.models;
 
-/*
- * Expects a cassandra columnfamily defined as
- * use keyspace2;
- CREATE TABLE Tweets (
- user varchar,
- interaction_time timeuuid,
- tweet varchar,
- PRIMARY KEY (user,interaction_time)
- ) WITH CLUSTERING ORDER BY (interaction_time DESC);
- * To manually generate a UUID use:
- * http://www.famkruithof.net/uuid/uuidgen
- */
 import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.PreparedStatement;
@@ -32,7 +20,6 @@ import org.imgscalr.Scalr.Method;
 
 import uk.ac.dundee.computing.aec.instagrim.lib.*;
 import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
-//import uk.ac.dundee.computing.aec.stores.TweetStore;
 
 public class PicModel {
 
@@ -166,15 +153,15 @@ public class PicModel {
     }
 
     public static BufferedImage createThumbnail(BufferedImage img) {
-        img = resize(img, Method.SPEED, 250, OP_ANTIALIAS, OP_GRAYSCALE);
-        // Let's add a little border before we return result.
-        return pad(img, 2);
+        img = resize(img, Method.SPEED, 200, OP_ANTIALIAS, OP_GRAYSCALE);
+        // add 1px border to the image
+        return pad(img, 1);
     }
     
    public static BufferedImage createProcessed(BufferedImage img) {
         int Width=img.getWidth()-1;
         img = resize(img, Method.SPEED, Width, OP_ANTIALIAS, OP_GRAYSCALE);
-        return pad(img, 4);
+        return img;
     }
    
     public java.util.LinkedList<Pic> getPicsForUser(String User) {
@@ -183,9 +170,7 @@ public class PicModel {
         PreparedStatement ps = session.prepare("select picid from userpiclist where user =?");
         ResultSet rs = null;
         BoundStatement boundStatement = new BoundStatement(ps);
-        rs = session.execute( // this is where the query is executed
-                boundStatement.bind( // here you are binding the 'boundStatement'
-                        User));
+        rs = session.execute(boundStatement.bind(User));
         if (rs.isExhausted()) {
             System.out.println("No Images returned");
             return null;
@@ -220,9 +205,7 @@ public class PicModel {
                 ps = session.prepare("select processed,processedlength,type from pics where picid =?");
             }
             BoundStatement boundStatement = new BoundStatement(ps);
-            rs = session.execute( // this is where the query is executed
-                    boundStatement.bind( // here you are binding the 'boundStatement'
-                            picid));
+            rs = session.execute(boundStatement.bind(picid));
 
             if (rs.isExhausted()) {
                 System.out.println("No Images returned");

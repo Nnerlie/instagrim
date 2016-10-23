@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package uk.ac.dundee.computing.aec.instagrim.servlets;
 
 import com.datastax.driver.core.Cluster;
@@ -19,10 +14,6 @@ import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
 import uk.ac.dundee.computing.aec.instagrim.models.User;
 import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 
-/**
- *
- * @author viivi
- */
 @WebServlet(name = "profile", urlPatterns = {"/profile","/profile/*"})
 public class Profile extends HttpServlet {
     
@@ -57,10 +48,13 @@ public class Profile extends HttpServlet {
         
         User us=new User();
         us.setCluster(cluster);
+        // check if the given password matches with the username
         boolean isValid=us.IsValidUser(username, password);
         
+        // if password is not right add error message and redirect to profile
         if (!lg.getlogedin() || !isValid) {
-            response.sendRedirect("/instagrim/profile.jsp");
+            session.setAttribute("NoChange", "Incorrect Password");
+            response.sendRedirect("/instagrim/profile");
         }
         else {
             if (email.equals("")) { email = lg.getEmail(); }
@@ -75,8 +69,7 @@ public class Profile extends HttpServlet {
             session.setAttribute("LoggedIn", lg);
             
             us.EditUser(username, email, firstname, lastname, bio);
-            RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
-	    rd.forward(request,response);
+            response.sendRedirect("/instagrim/images/"+username);
         }
     }
 }

@@ -28,7 +28,7 @@
                         String UserName = lg.getUsername();
                         if (lg.getlogedin()) {
                 %>
-                <a href="/instagrim/images/<%=lg.getUsername()%>">Your Images</a> 
+                <a href="/instagrim/images/<%=lg.getUsername()%>">Your Profile</a> 
                 
             <form method="POST" action="logout">
                     <input type="submit" value="Log out">
@@ -43,6 +43,11 @@
                                 
                 <% } %>
                     
+                </td><td style="padding-left: 20px;">
+                    <form method="POST" action="search">
+                        <input type="image" src="/instagrim/search.png"></td><td>
+                        <input type="text" name="searchUser">
+                    </form>
                 </td></tr>
             </table>
         </nav>

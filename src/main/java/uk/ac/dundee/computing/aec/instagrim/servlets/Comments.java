@@ -17,9 +17,6 @@ import uk.ac.dundee.computing.aec.instagrim.models.CommentModel;
 import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 import uk.ac.dundee.computing.aec.instagrim.stores.Comment;
 
-/**
- * Servlet implementation class Image
- */
 @WebServlet(urlPatterns = {"/comments", "/comments/*"})
 
 public class Comments extends HttpServlet {
@@ -49,9 +46,14 @@ public class Comments extends HttpServlet {
         UUID picid = UUID.fromString(picString);
         com.setCluster(cluster);
         java.util.LinkedList<Comment> lsComments = com.getCommentsForPic(picid);
-        RequestDispatcher rd = request.getRequestDispatcher("/comments.jsp");
+        
+        // get the username of the uploader of the image that comments are displayed for
+        String user = com.getUserForPic(picid);
+        
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/comments.jsp");
         request.setAttribute("Comments", lsComments);
         request.setAttribute("PictureID", picString);
+        request.setAttribute("TheUser", user);
         rd.forward(request, response);
 
     }
@@ -63,9 +65,11 @@ public class Comments extends HttpServlet {
         
         String username = null;
         
-        if (lg.getlogedin()) {
+        // if user is currently logged in post with the username stored in lg object
+        if (lg != null && lg.getlogedin()) {
             username = lg.getUsername();
         }
+        // else get username from the form's parameter "username"
         else {
             username = request.getParameter("username");
         }
@@ -75,8 +79,6 @@ public class Comments extends HttpServlet {
         CommentModel cm = new CommentModel();
         cm.setCluster(cluster);
         cm.addComment(picid, comment, username);
-        
-        System.out.println("Forwarding to userpics now");
         
         response.sendRedirect("/instagrim/comments/"+picid);
     }

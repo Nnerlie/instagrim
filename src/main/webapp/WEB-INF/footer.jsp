@@ -15,7 +15,7 @@
     </head>
     <body>
         <footer>
-            &COPY; Andy C
+            &COPY; Andy C & Viivi Pursiainen
         </footer>
     </body>
 </html>

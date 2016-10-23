@@ -50,11 +50,10 @@
             Choose file: <input type="file" name="upfile"> <br /><br />
             <input type="submit" value="Update Profile Picture">
         </form>
-        <form method="POST" action="Profile">
+        <form method="POST" action="profile">
         </td></tr></table> <br />
         <h3>Change profile details</h3> <br />
         
-        <form method="POST" action="Profile">
             <table align="center"><tr><td></td><td>
                         <b>Current Profile</b>
                     </td><td>
@@ -84,7 +83,9 @@
                     </td><td>
                         <input type="text" name="bio">
                     </td></tr><tr><td>
+                        <font color=" #e11111 ">${NoChange}</font> <br /><br />
                         Enter your password
+                        <% session.setAttribute("NoChange", null); %>
                     </td><td>
                         <input type="password" name="password">
                     </td><td>

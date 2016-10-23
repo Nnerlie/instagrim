@@ -10,11 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 
-/**
- *
- * @author Administrator
- */
-@WebServlet(name = "logout", urlPatterns = {"/logout","/logout/*","/images/logout"})
+@WebServlet(name = "logout", urlPatterns = {"/logout","/logout/*","/images/logout","/comments/logout"})
 public class Logout extends HttpServlet {
 
 

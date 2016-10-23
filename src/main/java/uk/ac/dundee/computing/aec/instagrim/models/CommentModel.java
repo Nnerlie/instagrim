@@ -41,6 +41,11 @@ public class CommentModel {
         System.out.println("Session closed");
     }
     
+    /**
+     *  Gets all comments stored in comments table for given picture ID and stores them in a linked list
+     * @param picid - the ID of the picture to get the comments for
+     * @return Linked List of Comment objects with the comment, user that posted the comment and time and date of the comment
+     */
     public java.util.LinkedList<Comment> getCommentsForPic(java.util.UUID picid) {
         java.util.LinkedList<Comment> Comments = new java.util.LinkedList<>();
         Session session = cluster.connect("instagrim");
@@ -66,6 +71,29 @@ public class CommentModel {
             }
         }
         return Comments;
+    }
+    
+    /**
+     * Find a username of a person that uploaded a certain picture
+     * @param picid - ID of the picture to find the user for
+     * @return username of the user that downloaded the picture
+     */
+    public String getUserForPic(java.util.UUID picid) {
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select user from Pics where picid =?");
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute(boundStatement.bind(picid));
+        String username = null;
+        if (rs.isExhausted()) {
+            System.out.println("No users returned");
+            return username;
+        } else {
+            for (Row row : rs) {
+                username = row.getString("user");
+            }
+        }
+        return username;
     }
     
 }

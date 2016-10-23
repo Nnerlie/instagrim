@@ -25,9 +25,6 @@ import uk.ac.dundee.computing.aec.instagrim.models.User;
 import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
 
-/**
- * Servlet implementation class Image
- */
 @WebServlet(urlPatterns = {
     "/image",
     "/image/*",
@@ -102,10 +99,7 @@ public class Image extends HttpServlet {
         profile.setUsername(User);
         User us = new User();
         us.setCluster(cluster);
-        System.out.println("Setting up the profile for " + User);
         profile = us.setUserLogin(User, profile);
-        
-        System.out.println("Profile email: " + profile.getEmail());
         request.setAttribute("ProfileView", profile);
         
         rd.forward(request, response);

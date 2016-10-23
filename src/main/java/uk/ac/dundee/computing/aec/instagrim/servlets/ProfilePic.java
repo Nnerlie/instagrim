@@ -24,9 +24,6 @@ import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
 import uk.ac.dundee.computing.aec.instagrim.models.User;
 
-/**
- * Servlet implementation class Image
- */
 @WebServlet(urlPatterns = {"/ProfilePic", "/ProfilePic/*"})
 @MultipartConfig
 
@@ -110,8 +107,8 @@ public class ProfilePic extends HttpServlet {
 
                 is.close();
             }
-            RequestDispatcher rd = request.getRequestDispatcher("/profile.jsp");
-             rd.forward(request, response);
+            System.out.println("Forwarding to profile page");
+            response.sendRedirect("/instagrim/images/"+username);
         }
 
     }

@@ -57,40 +57,25 @@
         <%=profile.getBio()%>
         <% if (rightUser) {
             %>
-                    </td><td style="text-align:right; vertical-align:bottom;" valign="bottom" width="100">
+                    </td><td style="text-align:right; vertical-align:bottom;" valign="bottom">
                         <a href="/instagrim/profile">Edit Profile</a>
                         <% } %>
                     </td></tr></table>
                     <hr width="80%" color="#C0C0C0" align="center"/>
+                    <table align="center"><tr><td style="text-align: center;">
         
         <%    
             java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
-            if (lsPics == null) {
-        %>
-        <p>No Pictures found</p>
-        <%
-        } else {
+            if (lsPics != null) {
             Iterator<Pic> iterator;
             iterator = lsPics.iterator();
             while (iterator.hasNext()) {
                 Pic p = (Pic) iterator.next();
 
         %>
-        <table><tr><td>
-            <a href="/instagrim/image/<%=p.getSUUID()%>" ><img src="/instagrim/thumb/<%=p.getSUUID()%>" style="border:0px;"></a>
-        </td></tr><tr><td>
-            <a href="/instagrim/comments/<%=p.getSUUID()%>" >Comments</a>
-        </td><td style="text-align:right;">
-        <%
-            if (rightUser) {
-                String picid = p.getSUUID();
-                
-                %>
-                <form method="POST" action="Delete">
-                    <input type="hidden" value="<%=picid%>" name="picid">
-                    <input type="submit" value="Delete">
-                    </form>
-        <% } %> </td></tr></table> <% } } %>
+            <a href="/instagrim/comments/<%=p.getSUUID()%>" ><img src="/instagrim/thumb/<%=p.getSUUID()%>"></a>
+        <% } } %>
+                            </td></tr></table>
         </article>
         
         <jsp:include page="footer.jsp" />
